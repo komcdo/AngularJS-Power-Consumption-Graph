@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app='app' lang='en' xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Power Usage Graph - AngularJS Example</title>
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="powerGraph.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
+<script src="dataGenerator.js"></script>
+<script src="powerGraph.js"></script>
+
+</head>
+
+<body ng-controller='tabControl'>
+  <div class='graphCont'>
+    <ul class='nav nav-tabs'>
+      <li ng-class='{active:tab.active}' ng-repeat='tab in tabs'>
+        <a href="" ng-click="selectTab($index)">
+          {{tab.name}}
+        </a>
+      </li>
+    </ul>
+    <div class='chart'>
+      <div class='y-axis'>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>0</div>
+        </div>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>2</div>
+        </div>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>4</div>
+        </div>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>6</div>
+        </div>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>8</div>
+        </div>
+        <div class='y-tick'>
+        	<div class='y-tickNum'>10</div>
+        </div>
+      	<div class='y-label'>Power Consumed (in kWh)</div>
+      </div>
+      <div class='graphData'>
+        <div class='graphBar' ng-style="{height:(dataPoint.value * 30) + 1 + 'px'};" ng-repeat="dataPoint in data | filter:currentTab | filter:timePeriod | orderBy:'datetime'">
+        </div>
+      </div>
+      <div class='x-axis'>Time (increments of 10 minutes)</div>
+    </div>
+  </div>
+  <div class='optionsCont'>
+    <div class='timePeriod'>
+      <ul class='nav nav-tabs'>
+        <li class='active'>
+          <a href="" ng-click="">
+            Time Period
+          </a>
+        </li>
+      </ul>
+      <div class='timeInputs'>
+        <label class="col-sm-4 control-label">Start Time</label>
+        <div class="col-sm-6">
+          <input type='text' class='form-control' ng-init="startTime='2013-12-13 17:00'" value='2013-12-13 17:00' ng-model='startTime' />
+        </div>
+        <label class="col-sm-4 control-label">End Time</label>
+        <div class="col-sm-6">
+          <input type='text' class='form-control' ng-init="endTime='2013-12-13 19:20'" value='2013-12-13 19:20' ng-model='endTime' />
+        </div>
+      </div>
+    </div>
+    <div class='data'>
+      <ul class='nav nav-tabs'>
+        <li class='active'>
+          <a href="" ng-click="selectDataTab('current')">
+            {{currentTab}} Raw Data
+          </a>
+        </li>
+      </ul>
+      <div class='rawDataCont'>
+        <table class='rawData'>
+          <thead class='rawDataDisplayHeader'>
+            <td>Datetime</td>
+            <td>Value</td>
+          </thead>
+          <tr class='rawDataDisplay' ng-repeat="dataPoint in data | filter:currentTab | orderBy:'datetime'">
+            <td class='col-sm-3'>
+              <input type='text' class='form-control' ng-class={editing:dataPoint.editing} ng-model='dataPoint.datetime' />
+              <span ng-class={editing:dataPoint.editing}>{{dataPoint.datetime}}</span>
+            </td>
+            <td class='col-sm-2'>
+              <input type='text' class='form-control' ng-class={editing:dataPoint.editing} ng-model='dataPoint.value' />
+              <span ng-class={editing:dataPoint.editing}>{{dataPoint.value}}</span> kWh
+            </td>
+            <td class='col-sm-1'>
+              <i ng-click='editData(dataPoint, $event)' class='glyphicon glyphicon-pencil'></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

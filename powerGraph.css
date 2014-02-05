@@ -1,0 +1,33 @@
+body{text-align:center;}
+.graphCont{width:40%; min-width:640px; display:inline-block; margin:30px 30px 0 0;}
+.chart{padding:2em; border:1px solid #DDD; border-top:0px;}
+.graphData{height:300px; position:relative; display:table-cell; vertical-align:bottom; border-left:1px solid #555; border-bottom:1px solid #555;}
+.graphBar{width:30px; background-color:green; display:inline-block;} 
+.optionsCont{width:20%; min-width:380px; display:inline-block; vertical-align:top; margin:30px 0 0 30px;}
+.timeInputs{padding:.5em; border:1px solid #DDD; position:relative; min-height:98px; border-top:0px; margin-bottom:1em;}  
+.timeInputs > label{text-align:right; margin-top:.75em;}
+.timeInputs > div{margin:1%;}
+.rawDataCont{padding:.5em; border:1px solid #DDD; border-top:0px;}
+.rawData{text-align:left; width:80%; margin:1em auto;}
+.rawDataDisplayHeader{font-weight:bold;}
+.rawDataDisplayHeader > tr > td:nth-of-type(2){text-align:right;}
+.rawDataDisplay > td:nth-of-type(1){padding:0;}
+.rawDataDisplay > td:nth-of-type(2){text-align:right; margin:0px; padding:0px;}
+.rawDataDisplay > td:nth-of-type(2) > input{max-width:45px;}
+.rawDataDisplay input{display:none; height:auto; padding:0px 12px 0px 6px;}
+.rawDataDisplay input.editing{display:inline;}
+.rawDataDisplay span.editing{display:none;}
+
+.y-axis{position:relative; float:left; width:130px; height:300px; margin-bottom:50px;}
+.y-label{position:absolute; width:75px; top:100px;}
+.y-tick{width:20px; height:1px; background-color:#555; overflow:visible; position:absolute; right:0px;}
+.y-tick:nth-of-type(1){top:299px;}
+.y-tick:nth-of-type(2){top:240px;}
+.y-tick:nth-of-type(3){top:180px;}
+.y-tick:nth-of-type(4){top:120px;}
+.y-tick:nth-of-type(5){top:60px;}
+.y-tick:nth-of-type(6){top:0px;}
+.y-tickNum{width:40px; height:auto; text-align:right; margin:-.75em 0 0 -46px;}
+.y-tick:nth-of-type(1) > .y-tickNum{margin:0 0 0 -40px;}
+
+.x-axis{display:inline-block; margin-left:-100px; padding:2em 0 0 0;}
